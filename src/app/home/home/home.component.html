@@ -1,1 +1,17 @@
-<Button text="Salir" (tap)="salir()" class="btn btn-primary"></Button>
+<ActionBar title="Animales">
+</ActionBar>
+
+<GridLayout>
+    <ListView [items]="animales">
+        <ng-template let-item="item">            
+            <StackLayout>
+                <Label [text]="item.nombre"></Label>
+                <Label [text]="item.numero"></Label>
+                <Label [text]="item.edad"></Label>
+            </StackLayout>        
+        </ng-template>
+    </ListView>
+    <Button text="Salir" (tap)="salir()" class="btn btn-primary"></Button>
+</GridLayout>
+
+
