@@ -40,5 +40,9 @@ export class HomeComponent implements OnInit {
       message: message});
   }
 
+  irCamara()
+  {   
+    this.routerExtensions.navigate(["/home/camara"],{});
+  }
 
 }
