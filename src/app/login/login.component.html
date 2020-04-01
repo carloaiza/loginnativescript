@@ -1,9 +1,8 @@
 <FlexboxLayout class="page"  >
-    <Image src="~/images/logo.png" loadMode="async" stretch="aspectFit"></Image>
-    <StackLayout class="form">
-        
-        
-        <Image src="https://www.google.com/images/errors/logo_sm_2.png" ></Image>
+    
+    <StackLayout class="form">       
+        <Image src="~/images/logo.png" ></Image>
+        <Image src="http://45.79.91.114:8082/logo.png" ></Image>
         <Label class="header" text="MOBBI"></Label>
         <PreviousNextView>
         <GridLayout rows="auto,auto">
@@ -18,10 +17,13 @@
                 [(ngModel)]="user.contrasenia" autocorrect="false" autocapitalizationType="none">
                 </TextField>
             </StackLayout>
-            <ActivityIndicator rowspan="2" [busy]="isBusy" color="#365a95" width="100" height="100" (busyChange)="onBusyChanged($event)"></ActivityIndicator>
+            <ActivityIndicator rowspan="2" [busy]="isBusy" color="#365a95" 
+                    width="100" height="100" (busyChange)="onBusyChanged($event)">
+            </ActivityIndicator>
         </GridLayout>
     </PreviousNextView>
-        <Button [isEnabled]="!isBusy" text="Ingresar" (tap)="ingresar()" class="btn btn-primary"></Button>
+        <Button [isEnabled]="!isBusy" text="Ingresar" (tap)="ingresar()" 
+        class="btn btn-primary"></Button>
         
     </StackLayout>
     

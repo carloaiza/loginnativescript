@@ -15,6 +15,9 @@ import { Image } from "tns-core-modules/ui/image";
 })
 export class LoginComponent implements OnInit {
   user: User;
+  isBusy: boolean = false;
+
+
   constructor(private routerExtensions: RouterExtensions, 
     private loginService:LoginService, private page:Page) {
     this.user = new User();
@@ -40,8 +43,9 @@ export class LoginComponent implements OnInit {
       //console.log(result);
       //console.log(JSON.parse(result.toString()).token.access_token);
       setString("token",result.token.access_token);
-      this.routerExtensions.navigate(["/home"],{clearHistory: true});
       this.isBusy=false;
+      this.routerExtensions.navigate(["/home"],{clearHistory: true});
+      
     }, (error) =>{
       this.alert(error.error.message); 
       this.isBusy=false;     
@@ -56,9 +60,7 @@ export class LoginComponent implements OnInit {
       title: "Ejemplo Login",
       okButtonText: "OK",
       message: message});
-  }
-
-  isBusy: boolean = false;
+  }  
 
   onBusyChanged(args: EventData) {
       let indicator: ActivityIndicator = <ActivityIndicator>args.object;

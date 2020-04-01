@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.ejemplologin",
+    "id": "com.mobbi",
     "tns-android": {
       "version": "6.4.1"
     },
