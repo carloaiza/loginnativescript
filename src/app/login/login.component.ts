@@ -6,7 +6,6 @@ import { setString } from "tns-core-modules/application-settings";
 import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
 import { EventData } from "tns-core-modules/data/observable";
 import { Page } from "tns-core-modules/ui/page";
-import { Image } from "tns-core-modules/ui/image";
 
 @Component({
   selector: 'ns-login',
