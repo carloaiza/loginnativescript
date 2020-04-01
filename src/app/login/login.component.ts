@@ -3,6 +3,10 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { User } from "../model/user"
 import {LoginService} from "../shared/login.service"
 import { setString } from "tns-core-modules/application-settings";
+import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
+import { EventData } from "tns-core-modules/data/observable";
+import { Page } from "tns-core-modules/ui/page";
+import { Image } from "tns-core-modules/ui/image";
 
 @Component({
   selector: 'ns-login',
@@ -11,10 +15,12 @@ import { setString } from "tns-core-modules/application-settings";
 })
 export class LoginComponent implements OnInit {
   user: User;
-  constructor(private routerExtensions: RouterExtensions, private loginService:LoginService) {
+  constructor(private routerExtensions: RouterExtensions, 
+    private loginService:LoginService, private page:Page) {
     this.user = new User();
     this.user.email="carloaiza@umanizales.edu.co";
     this.user.contrasenia="123456";
+    this.page.actionBarHidden = true;
    }
 
   ngOnInit(): void {
@@ -22,6 +28,8 @@ export class LoginComponent implements OnInit {
 
   ingresar()
   {
+    this.isBusy=true;
+
     if(!this.user.email || !this.user.contrasenia)
     {
       this.alert("Debe ingresar un correo y una contraseña");
@@ -33,10 +41,12 @@ export class LoginComponent implements OnInit {
       //console.log(JSON.parse(result.toString()).token.access_token);
       setString("token",result.token.access_token);
       this.routerExtensions.navigate(["/home"],{clearHistory: true});
+      this.isBusy=false;
     }, (error) =>{
-      this.alert(error.error.message);      
+      this.alert(error.error.message); 
+      this.isBusy=false;     
     });
-
+    
     
   }
 
@@ -48,5 +58,11 @@ export class LoginComponent implements OnInit {
       message: message});
   }
 
+  isBusy: boolean = false;
+
+  onBusyChanged(args: EventData) {
+      let indicator: ActivityIndicator = <ActivityIndicator>args.object;
+      console.log("indicator.busy changed to: " + indicator.busy);
+  }
 
 }

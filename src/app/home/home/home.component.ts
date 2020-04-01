@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from "nativescript-angular/router";
 import { Animal } from "../../model/animal";
 import {AnimalService}from "../../shared/animal.service";
+import { clear } from "tns-core-modules/application-settings";
 
 
 @Component({
@@ -17,8 +18,7 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     this.animalService.getAnimals()
-    .subscribe( (result:any) =>{
-      console.log(result);    
+    .subscribe( (result:any) =>{      
       this.animales= result.animals;      
     }, (error) =>{
       this.alert(error.error.message);
@@ -27,7 +27,9 @@ export class HomeComponent implements OnInit {
 
   salir()
   {
+    clear();
     this.routerExtensions.navigate(["/login"],{clearHistory: true});
+
   }
 
   alert(message:string)

@@ -1,4 +1,11 @@
 <ActionBar title="Animales">
+    <ActionItem
+    android.systemIcon="ic_menu_back" 
+    ios.position="right"
+    android.position="right"
+    (tap) ="salir()" text="Salir">
+    </ActionItem>
+
 </ActionBar>
 
 <GridLayout>
@@ -11,7 +18,7 @@
             </StackLayout>        
         </ng-template>
     </ListView>
-    <Button text="Salir" (tap)="salir()" class="btn btn-primary"></Button>
+ <!--  <Button text="Salir" (tap)="salir()" class="btn btn-primary"></Button>-->
 </GridLayout>
 
 
